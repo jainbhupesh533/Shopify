@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import './src/providers/orders.dart';
-import './src/routes/cart_page.dart';
-import './src/providers/products.dart';
-import 'package:provider/provider.dart';
-import './src/routes/products_overview_page.dart';
-import './src/routes/product_detail_page.dart';
-import './src/providers/cart.dart';
+import './import.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -37,6 +31,7 @@ class MyApp extends StatelessWidget {
           '/': (ctx) => ProductsOverviewPage(),
           ProductDetailPage.routeName: (ctx) => ProductDetailPage(),
           CartPage.routeName: (ctx) => CartPage(),
+          OrdersPage.routeName: (ctx) => OrdersPage(),
         },
         onUnknownRoute: (settings) => MaterialPageRoute(
           builder: (ctx) => ProductsOverviewPage(),
