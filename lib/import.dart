@@ -6,3 +6,5 @@ export './src/routes/products_overview_page.dart';
 export './src/routes/product_detail_page.dart';
 export './src/providers/cart.dart';
 export './src/routes/orders_page.dart';
+export './src/routes/user_products_page.dart';
+export './src/routes/edit_product_page.dart';

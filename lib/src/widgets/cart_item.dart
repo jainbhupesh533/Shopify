@@ -19,7 +19,7 @@ class CartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cart = Provider.of<Cart>(context,listen: false);
+    final cart = Provider.of<Cart>(context, listen: false);
     return Dismissible(
       key: ValueKey(id),
       background: Container(
@@ -37,6 +37,29 @@ class CartItem extends StatelessWidget {
         ),
       ),
       direction: DismissDirection.endToStart,
+      confirmDismiss: (direction) {
+        return showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: Text('Are you Sure?'),
+            content: Text('Do you want to remove the item from cart?'),
+            actions: [
+              TextButton(
+                child: Text('NO'),
+                onPressed: () {
+                  Navigator.of(ctx).pop(false);
+                },
+              ),
+              TextButton(
+                child: Text('Yes'),
+                onPressed: () {
+                  Navigator.of(ctx).pop(true);
+                },
+              ),
+            ],
+          ),
+        );
+      },
       onDismissed: (direction) {
         cart.removeItem(productId);
       },
@@ -57,7 +80,7 @@ class CartItem extends StatelessWidget {
               ),
             ),
             title: Text(title),
-            subtitle: Text('Total: \₹${price * quantity}'),
+            subtitle: Text('Total: \₹${(price * quantity).toStringAsFixed(2)}'),
             trailing: FittedBox(
               fit: BoxFit.fill,
               child: Column(

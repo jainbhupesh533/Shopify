@@ -32,6 +32,8 @@ class MyApp extends StatelessWidget {
           ProductDetailPage.routeName: (ctx) => ProductDetailPage(),
           CartPage.routeName: (ctx) => CartPage(),
           OrdersPage.routeName: (ctx) => OrdersPage(),
+          UserProductsPage.routeName: (ctx) => UserProductsPage(),
+          EditProductPage.routeName: (ctx) => EditProductPage(),
         },
         onUnknownRoute: (settings) => MaterialPageRoute(
           builder: (ctx) => ProductsOverviewPage(),
