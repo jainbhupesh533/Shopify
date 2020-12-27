@@ -8,3 +8,6 @@ export './src/providers/cart.dart';
 export './src/routes/orders_page.dart';
 export './src/routes/user_products_page.dart';
 export './src/routes/edit_product_page.dart';
+export './src/routes/auth_page.dart';
+export './src/providers/auth.dart';
+export './src/routes/splash_page.dart';

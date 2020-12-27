@@ -2,50 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/http_expection.dart';
-
-class Product with ChangeNotifier {
-  final String id;
-  final String title;
-  final String description;
-  final double price;
-  final String imageUrl;
-  bool isFavourite;
-
-  Product({
-    @required this.id,
-    @required this.title,
-    @required this.description,
-    @required this.price,
-    @required this.imageUrl,
-    this.isFavourite = false,
-  });
-
-  void _setFavValue(bool newValue) {
-    isFavourite = newValue;
-    notifyListeners();
-  }
-
-  Future<void> toggleFavoriteStatus() async {
-    final oldStatus = isFavourite;
-    isFavourite = !isFavourite;
-    notifyListeners();
-    final url =
-        'https://shopify-535b9-default-rtdb.firebaseio.com/products/$id.json';
-    try {
-      final res = await http.patch(
-        url,
-        body: json.encode({
-          'isFavorite': isFavourite,
-        }),
-      );
-      if (res.statusCode >= 400) {
-        _setFavValue(oldStatus);
-      }
-    } catch (error) {
-      _setFavValue(oldStatus);
-    }
-  }
-}
+import './product.dart';
 
 class Products with ChangeNotifier {
   List<Product> _items = [
@@ -84,6 +41,16 @@ class Products with ChangeNotifier {
   ];
 
   // var _showFavoritesOnly = false;
+  // Products();
+  String authToken;
+  String userId;
+
+  void update(String tokenValue, String id, List<Product> _itemValue) {
+    authToken = tokenValue;
+    userId = id;
+    _items = _itemValue;
+    notifyListeners();
+  }
 
   List<Product> get items {
     return [..._items];
@@ -97,9 +64,11 @@ class Products with ChangeNotifier {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
-  Future<void> fetchAndSetProducts() async {
-    const url =
-        'https://shopify-535b9-default-rtdb.firebaseio.com/products.json';
+  Future<void> fetchAndSetProducts([bool filterByUser = false]) async {
+    final filterString =
+        filterByUser ? 'orderBy="creatorId"&equalTo="$userId"' : '';
+    var url =
+        'https://shopify-535b9-default-rtdb.firebaseio.com/products.json?auth=$authToken&$filterString';
     try {
       final res = await http.get(url);
       // print(res);
@@ -108,6 +77,10 @@ class Products with ChangeNotifier {
       if (extractedData == null) {
         return;
       }
+      url =
+          'https://shopify-535b9-default-rtdb.firebaseio.com/userFavorites/$userId.json?auth=$authToken';
+      final favoriteRes = await http.get(url);
+      final favoriteData = json.decode(favoriteRes.body);
       extractedData.forEach((prodId, prodData) {
         loadedData.insert(
           0,
@@ -116,7 +89,9 @@ class Products with ChangeNotifier {
             title: prodData['title'],
             description: prodData['description'],
             price: prodData['price'],
-            isFavourite: prodData['isFavorite'],
+            isFavourite:
+                favoriteData == null ? false : favoriteData[prodId] ?? false,
+            // isFavourite: prodData['isFavorite'],
             imageUrl: prodData['imageUrl'],
           ),
         );
@@ -129,8 +104,8 @@ class Products with ChangeNotifier {
   }
 
   Future<void> addProduct(Product product) async {
-    const url =
-        'https://shopify-535b9-default-rtdb.firebaseio.com/products.json';
+    final url =
+        'https://shopify-535b9-default-rtdb.firebaseio.com/products.json?auth=$authToken';
     try {
       final res = await http.post(
         url,
@@ -139,10 +114,11 @@ class Products with ChangeNotifier {
           'description': product.description,
           'price': product.price,
           'imageUrl': product.imageUrl,
-          'isFavorite': product.isFavourite,
+          'creatorId': userId,
+          // 'isFavorite': product.isFavourite,
         }),
       );
-      print(json.decode(res.body));
+      // print(json.decode(res.body));
       final newProduct = Product(
         id: json.decode(res.body)['name'],
         title: product.title,
@@ -167,7 +143,7 @@ class Products with ChangeNotifier {
     final prodIndex = _items.indexWhere((prod) => prod.id == id);
     if (prodIndex >= 0) {
       final url =
-          'https://shopify-535b9-default-rtdb.firebaseio.com/products/$id.json';
+          'https://shopify-535b9-default-rtdb.firebaseio.com/products/$id.json?auth=$authToken';
       try {
         final res = await http.patch(
           url,
@@ -193,7 +169,7 @@ class Products with ChangeNotifier {
 
   Future<void> deleteProduct(String id) async {
     final url =
-        'https://shopify-535b9-default-rtdb.firebaseio.com/products/$id.json';
+        'https://shopify-535b9-default-rtdb.firebaseio.com/products/$id.json?auth=$authToken';
     final existingProductIndex = _items.indexWhere((prod) => prod.id == id);
     var existingProduct = _items[existingProductIndex];
     _items.removeAt(existingProductIndex);

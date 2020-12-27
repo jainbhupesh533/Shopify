@@ -1,4 +1,7 @@
 import 'package:flutter/foundation.dart';
+// import 'dart:convert';
+// import 'package:http/http.dart' as http;
+
 
 class CartItem {
   final String id;
@@ -15,7 +18,16 @@ class CartItem {
 }
 
 class Cart with ChangeNotifier {
+  // String authToken;
+  // String userId;
+
   Map<String, CartItem> _items = {};
+
+  // void update(String tokenValue, String id)  {
+  //   authToken = tokenValue;
+  //   userId = id
+  //   notifyListeners();
+  // }
 
   Map<String, CartItem> get items {
     return {..._items};
@@ -34,6 +46,38 @@ class Cart with ChangeNotifier {
   }
 
   void addItems(String productId, double price, String title) {
+    // print(productId);
+    // int quantity;
+    // final url =
+    //     'https://shopify-535b9-default-rtdb.firebaseio.com/carts/$userId.json?auth=$authToken';
+    // final timeStamp = DateTime.now();
+    // try {
+    //   // if (!url.contains(productId)) {
+    //     if(res.body)
+    //     final res = await http.post(
+    //       url,
+    //       body: json.encode({
+    //         'id': productId,
+    //         'title': title,
+    //         'price': price,
+    //         'quantity': 1,
+    //       }),
+    //     );
+    //   // } else {
+    //   //   final resUpdate = await http.patch(
+    //   //     url,
+    //   //     body: json.encode({
+    //   //       'id': timeStamp.toIso8601String(),
+    //   //       'title': title,
+    //   //       'price': price * quantity,
+    //   //       'quantity': quantity + 1,
+    //   //     }),
+    //   //   );
+    //   //   // quantity++;
+    //   // }
+    // } catch (error) {
+    //   print(error);
+    // }
     if (_items.containsKey(productId)) {
       _items.update(
         productId,

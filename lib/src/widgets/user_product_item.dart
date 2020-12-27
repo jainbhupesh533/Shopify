@@ -13,7 +13,7 @@ class UserProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scaffold = ScaffoldMessenger.of(context);
-    return ListTile(
+    return  ListTile(
       title: Text(title),
       leading: CircleAvatar(
         backgroundImage: NetworkImage(imageUrl),

@@ -53,11 +53,11 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage>
     print(state);
   }
 
-  @override
-  dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
+  // @override
+  // dispose() {
+  //   WidgetsBinding.instance.removeObserver(this);
+  //   super.dispose();
+  // }
 
   var _showOnlyFavorites = false;
   @override
