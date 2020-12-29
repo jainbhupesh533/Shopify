@@ -21,7 +21,7 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: [
           AppBar(
-            title: Text('Shoplify'),
+            title: const Text('Shoplify'),
             automaticallyImplyLeading: false,
           ),
           Divider(),
@@ -33,8 +33,8 @@ class AppDrawer extends StatelessWidget {
               Icons.edit, 'Manage Products', UserProductsPage.routeName),
           Divider(),
           ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text('Log Out'),
+            leading:const Icon(Icons.exit_to_app),
+            title: const Text('Log Out'),
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).pushReplacementNamed('/');

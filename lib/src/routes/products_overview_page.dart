@@ -84,11 +84,11 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage>
             ),
             itemBuilder: (_) => [
               PopupMenuItem(
-                child: Text('Only Favorites'),
+                child: const Text('Only Favorites'),
                 value: FilterOptions.Favorites,
               ),
               PopupMenuItem(
-                child: Text('Show All'),
+                child: const Text('Show All'),
                 value: FilterOptions.All,
               ),
             ],
@@ -99,7 +99,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage>
               value: cart.itemCount.toString(),
             ),
             child: IconButton(
-              icon: Icon(Icons.shopping_cart),
+              icon: const Icon(Icons.shopping_cart),
               onPressed: () {
                 Navigator.of(context).pushNamed(CartPage.routeName);
               },
@@ -109,7 +109,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage>
       ),
       drawer: AppDrawer(),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
+          ?  Center(child: CircularProgressIndicator())
           : ProductsGrid(_showOnlyFavorites),
     );
   }

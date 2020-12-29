@@ -79,7 +79,7 @@ class _EditProductPageState extends State<EditProductPage> {
               !_imageUrlController.text.endsWith('.jpeg'))) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(
+            content: const Text(
               'Provide a URL',
               // textAlign: TextAlign.center,
             ),
@@ -99,11 +99,11 @@ class _EditProductPageState extends State<EditProductPage> {
       context: context,
       useRootNavigator: false,
       builder: (ctx) => AlertDialog(
-        title: Text('An error occured!'),
-        content: Text('Something Went Wrong'),
+        title: const Text('An error occured!'),
+        content:const  Text('Something Went Wrong'),
         actions: [
           FlatButton(
-            child: Text('Okay'),
+            child:const  Text('Okay'),
             onPressed: () {
               Navigator.of(ctx).pop();
             },
@@ -118,7 +118,7 @@ class _EditProductPageState extends State<EditProductPage> {
     if (!isValid) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
+          content:const  Text(
             'PRovide all Values',
           ),
           duration: Duration(
@@ -173,8 +173,8 @@ class _EditProductPageState extends State<EditProductPage> {
       if (!_keyboardVisible) {
         return FloatingActionButton.extended(
           onPressed: _saveForm,
-          icon: Icon(Icons.save),
-          label: Text('Save'),
+          icon:const Icon(Icons.save),
+          label:const Text('Save'),
           elevation: 20.0,
           backgroundColor: Theme.of(context).primaryColor,
         );
@@ -185,11 +185,11 @@ class _EditProductPageState extends State<EditProductPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Product'),
+        title: const Text('Edit Product'),
         actions: [
           IconButton(
             onPressed: _saveForm,
-            icon: Icon(Icons.save),
+            icon:const Icon(Icons.save),
           ),
         ],
       ),
@@ -205,7 +205,7 @@ class _EditProductPageState extends State<EditProductPage> {
                   children: [
                     TextFormField(
                       initialValue: _initValues['title'],
-                      decoration: InputDecoration(labelText: 'Title'),
+                      decoration:const InputDecoration(labelText: 'Title'),
                       textInputAction: TextInputAction.next,
                       onFieldSubmitted: (_) {
                         FocusScope.of(context).requestFocus(_priceFocusNode);
@@ -227,7 +227,7 @@ class _EditProductPageState extends State<EditProductPage> {
                     ),
                     TextFormField(
                       initialValue: _initValues['price'],
-                      decoration: InputDecoration(labelText: 'Price'),
+                      decoration:const InputDecoration(labelText: 'Price'),
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.number,
                       focusNode: _priceFocusNode,
@@ -259,7 +259,7 @@ class _EditProductPageState extends State<EditProductPage> {
                     ),
                     TextFormField(
                       initialValue: _initValues['description'],
-                      decoration: InputDecoration(labelText: 'Description'),
+                      decoration: const InputDecoration(labelText: 'Description'),
                       maxLines: 3,
                       keyboardType: TextInputType.multiline,
                       focusNode: _desciptionFocusNode,
@@ -308,7 +308,7 @@ class _EditProductPageState extends State<EditProductPage> {
                         Expanded(
                           child: TextFormField(
                             // initialValue: _initValues['imageUrl'],
-                            decoration: InputDecoration(labelText: 'Image URL'),
+                            decoration: const InputDecoration(labelText: 'Image URL'),
                             keyboardType: TextInputType.url,
                             textInputAction: TextInputAction.done,
                             controller: _imageUrlController,

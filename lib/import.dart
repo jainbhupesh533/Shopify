@@ -11,3 +11,4 @@ export './src/routes/edit_product_page.dart';
 export './src/routes/auth_page.dart';
 export './src/providers/auth.dart';
 export './src/routes/splash_page.dart';
+export './src/helpers/custom_route.dart';

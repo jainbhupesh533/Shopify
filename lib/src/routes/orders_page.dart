@@ -48,7 +48,7 @@ class OrdersPage extends StatelessWidget {
           } else {
             if (dataSnapshot.error != null) {
               return Center(
-                child: Text('Error'),
+                child: const Text('Error'),
               );
             } else {
               return Consumer<Orders>(

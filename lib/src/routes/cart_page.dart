@@ -17,13 +17,13 @@ class CartPage extends StatelessWidget {
       body: Column(
         children: [
           Card(
-            margin: EdgeInsets.all(15),
+            margin: const EdgeInsets.all(15),
             child: Padding(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
+                  const Text(
                     'Total',
                     style: TextStyle(fontSize: 20),
                   ),
