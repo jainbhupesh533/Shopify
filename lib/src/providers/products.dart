@@ -155,7 +155,7 @@ class Products with ChangeNotifier {
           }),
         );
         //  here will be prodIndex inside items
-        _items[json.decode(res.body)['name']] = newProduct;
+        _items[prodIndex] = newProduct;
         notifyListeners();
       } catch (error) {
         print(error);
