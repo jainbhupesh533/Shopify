@@ -60,6 +60,12 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage>
   // }
 
   var _showOnlyFavorites = false;
+
+  Future<void> _refreshProducts(BuildContext context) async {
+    await Provider.of<Products>(context, listen: false)
+        .fetchAndSetProducts(true);
+  }
+
   @override
   Widget build(BuildContext context) {
     // final productContainer=  Provider.of<Products>(context,listen: false);
@@ -109,8 +115,11 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage>
       ),
       drawer: AppDrawer(),
       body: _isLoading
-          ?  Center(child: CircularProgressIndicator())
-          : ProductsGrid(_showOnlyFavorites),
+          ? Center(child: CircularProgressIndicator())
+          : RefreshIndicator(
+              child: ProductsGrid(_showOnlyFavorites),
+              onRefresh: () => _refreshProducts(context),
+            ),
     );
   }
 }

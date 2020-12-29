@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.1
+  flutter_launcher_icons: ^0.8.1
   http: ^0.12.2
   intl: ^0.16.1
   provider: ^4.3.2+3
@@ -32,6 +33,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
+flutter_icons:
+  image_path: "assets/images/shoplify_logo.png" 
+  android: true
+  ios: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
