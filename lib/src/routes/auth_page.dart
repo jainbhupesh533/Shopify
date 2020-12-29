@@ -101,6 +101,7 @@ class _AuthCardState extends State<AuthCard>
     'email': '',
     'password': '',
   };
+  bool _showPass;
   var _isLoading = false;
   final _passwordController = TextEditingController();
   AnimationController _controller;
@@ -111,6 +112,7 @@ class _AuthCardState extends State<AuthCard>
   @override
   void initState() {
     super.initState();
+    _showPass = true;
     _controller = AnimationController(
       vsync: this,
       duration: Duration(
@@ -228,10 +230,29 @@ class _AuthCardState extends State<AuthCard>
       });
       _controller.reverse();
     }
+    if (!_showPass) {
+      setState(() {
+        _showPass = true;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget _showPassButton() {
+      return IconButton(
+        icon: Icon(
+          _showPass ? Icons.visibility_off : Icons.visibility,
+          color: Theme.of(context).primaryColorDark,
+        ),
+        onPressed: () {
+          setState(() {
+            _showPass = !_showPass;
+          });
+        },
+      );
+    }
+
     final deviceSize = MediaQuery.of(context).size;
     return Card(
       shape: RoundedRectangleBorder(
@@ -261,7 +282,8 @@ class _AuthCardState extends State<AuthCard>
             child: Column(
               children: <Widget>[
                 TextFormField(
-                  decoration: const InputDecoration(labelText: 'E-Mail'),
+                  decoration: const InputDecoration(
+                      labelText: 'E-Mail', hintText: 'Enter your Email'),
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value.isEmpty || !value.contains('@')) {
@@ -273,8 +295,12 @@ class _AuthCardState extends State<AuthCard>
                   },
                 ),
                 TextFormField(
-                  decoration: const InputDecoration(labelText: 'Password'),
-                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    hintText: 'Enter your Password',
+                    suffixIcon: _showPassButton(),
+                  ),
+                  obscureText: _showPass,
                   controller: _passwordController,
                   validator: (value) {
                     if (value.isEmpty || value.length < 5) {
@@ -299,9 +325,12 @@ class _AuthCardState extends State<AuthCard>
                       position: _slideAnimation,
                       child: TextFormField(
                         enabled: _authMode == AuthMode.Signup,
-                        decoration: const InputDecoration(
-                            labelText: 'Confirm Password'),
-                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: 'Confirm Password',
+                          hintText: 'Enter Again',
+                          suffixIcon: _showPassButton(),
+                        ),
+                        obscureText: _showPass,
                         validator: _authMode == AuthMode.Signup
                             ? (value) {
                                 if (value != _passwordController.text) {
