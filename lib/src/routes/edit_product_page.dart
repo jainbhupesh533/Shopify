@@ -118,7 +118,7 @@ class _EditProductPageState extends State<EditProductPage> {
     if (!isValid) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
+          content: const Text(
             'PRovide all Values',
           ),
           duration: Duration(
