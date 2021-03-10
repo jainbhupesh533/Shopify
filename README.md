@@ -41,7 +41,7 @@ git clone https://github.com/jainbhupesh533/Shopify.git
 ```
   ##### Move to the desired folder
 ```bash
-cd \Chatter-App
+cd \Shopify
 ```
 
   ##### To run the app, simply write
