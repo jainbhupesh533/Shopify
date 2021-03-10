@@ -68,7 +68,7 @@ class Products with ChangeNotifier {
     final filterString =
         filterByUser ? 'orderBy="creatorId"&equalTo="$userId"' : '';
     var url =
-        'https://shopify-535b9-default-rtdb.firebaseio.com/products.json?auth=$authToken&$filterString';
+        'url';
     try {
       final res = await http.get(url);
       // print(res);
@@ -78,7 +78,7 @@ class Products with ChangeNotifier {
         return;
       }
       url =
-          'https://shopify-535b9-default-rtdb.firebaseio.com/userFavorites/$userId.json?auth=$authToken';
+          'url';
       final favoriteRes = await http.get(url);
       final favoriteData = json.decode(favoriteRes.body);
       extractedData.forEach((prodId, prodData) {
@@ -105,7 +105,7 @@ class Products with ChangeNotifier {
 
   Future<void> addProduct(Product product) async {
     final url =
-        'https://shopify-535b9-default-rtdb.firebaseio.com/products.json?auth=$authToken';
+        'url';
     try {
       final res = await http.post(
         url,
@@ -143,7 +143,7 @@ class Products with ChangeNotifier {
     final prodIndex = _items.indexWhere((prod) => prod.id == id);
     if (prodIndex >= 0) {
       final url =
-          'https://shopify-535b9-default-rtdb.firebaseio.com/products/$id.json?auth=$authToken';
+          'url';
       try {
         final res = await http.patch(
           url,
@@ -170,7 +170,7 @@ class Products with ChangeNotifier {
 
   Future<void> deleteProduct(String id) async {
     final url =
-        'https://shopify-535b9-default-rtdb.firebaseio.com/products/$id.json?auth=$authToken';
+        'url';
     final existingProductIndex = _items.indexWhere((prod) => prod.id == id);
     var existingProduct = _items[existingProductIndex];
     _items.removeAt(existingProductIndex);

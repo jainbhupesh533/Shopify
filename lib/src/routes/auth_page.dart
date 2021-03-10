@@ -159,7 +159,7 @@ class _AuthCardState extends State<AuthCard>
         title: const Text('AN error Occured'),
         content: Text(message),
         actions: [
-          FlatButton(
+          TextButton(
             child: const Text('Okay'),
             onPressed: () {
               Navigator.of(ctx).pop();

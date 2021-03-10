@@ -49,7 +49,7 @@ class Cart with ChangeNotifier {
     // print(productId);
     // int quantity;
     // final url =
-    //     'https://shopify-535b9-default-rtdb.firebaseio.com/carts/$userId.json?auth=$authToken';
+    //     'url';
     // final timeStamp = DateTime.now();
     // try {
     //   // if (!url.contains(productId)) {

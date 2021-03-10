@@ -103,6 +103,7 @@ class _OrderButtonState extends State<OrderButton> {
                 _isLoading = false;
               });
             },
+              
       textColor: Theme.of(context).primaryColor,
     );
   }

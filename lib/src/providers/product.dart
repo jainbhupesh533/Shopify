@@ -29,7 +29,7 @@ class Product with ChangeNotifier {
     isFavourite = !isFavourite;
     notifyListeners();
     final url =
-        'https://shopify-535b9-default-rtdb.firebaseio.com/userFavorites/$userId/$id.json?auth=$token';
+        'url';
     try {
       final res = await http.put(
         //patch -  we only want ot update existing status

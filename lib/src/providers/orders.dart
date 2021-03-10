@@ -35,7 +35,7 @@ class Orders with ChangeNotifier {
 
   Future<void> fetchAndSetOrders() async {
     final url =
-        'https://shopify-535b9-default-rtdb.firebaseio.com/orders/$userId.json?auth=$authToken';
+        'url';
     final res = await http.get(url);
     final List<OrderItem> loadelOrders = [];
     final extractedData = json.decode(res.body) as Map<String, dynamic>;
@@ -68,7 +68,7 @@ class Orders with ChangeNotifier {
 
   Future<void> addOrder(List<CartItem> cartProducts, double total) async {
     final url =
-        'https://shopify-535b9-default-rtdb.firebaseio.com/orders/$userId.json?auth=$authToken';
+        'url';
     final timeStamp = DateTime.now();
     try {
       final res = await http.post(
