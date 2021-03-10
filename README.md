@@ -1,7 +1,7 @@
 <img src="./ScreenShots/ss.png" width="100%">
 
 
-# shoplify
+# Shopify
 
 
 This is a flutter based modern shopping app where users can sign up and log in to shop for their friends, family, colleagues among groups with enriched User-Experience.
@@ -70,7 +70,7 @@ git clone https://github.com/jainbhupesh533/Shopify
 **3.** Navigate to the project directory.
 
 ```terminal
-cd shoplify
+cd shopify
 ```
 
 **4.** Checkout from master to development branch.
@@ -95,7 +95,7 @@ git push -u origin development
 
 **8.** Create a Pull Request!
 
-**Congratulations!**  :boom: Sit and relax, you've made your contribution to [Shopify]  (https://github.com/jainbhupesh533/Shopify) project.
+**Congratulations!**  :boom: Sit and relax, you've made your contribution to [Shopify](https://github.com/jainbhupesh533/Shopify) project.
 
 
 ## Tasks and Features
